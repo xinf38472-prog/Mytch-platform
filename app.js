@@ -223,6 +223,16 @@ async function loadPayload() {
     if (!response.ok) throw new Error(`接口返回 ${response.status}`);
     stateStore.payload = await response.json();
     stateStore.demoMode = false;
+    const demoResponse = await fetch(`demo_state.json?v=${Date.now()}`, { cache: "no-store" });
+    if (demoResponse.ok) {
+      const demoPayload = await demoResponse.json();
+      const apiSize = (stateStore.payload.state?.students?.length || 0) + (stateStore.payload.state?.companies?.length || 0);
+      const demoSize = (demoPayload.state?.students?.length || 0) + (demoPayload.state?.companies?.length || 0);
+      if (demoSize > apiSize) {
+        stateStore.payload = demoPayload;
+        stateStore.demoMode = true;
+      }
+    }
   } catch (error) {
     const stored = localStorage.getItem(DEMO_STORAGE_KEY);
     if (stored) {
