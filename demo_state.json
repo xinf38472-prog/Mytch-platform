@@ -1,0 +1,212 @@
+{
+  "database": "GitHub Pages demo data",
+  "state": {
+    "students": [
+      { "id": "Student_01", "name": "Chen Rui", "gpa": 2.8, "internship": 1.8, "skills": 2.6, "personality": 0.7, "soft": 0.55 },
+      { "id": "Student_02", "name": "Li Na", "gpa": 3.0, "internship": 3.6, "skills": 3.65, "personality": 0.46, "soft": 0.55 },
+      { "id": "Student_03", "name": "Wang Hao", "gpa": 3.4, "internship": 3.1, "skills": 2.85, "personality": 0.89, "soft": 0.67 },
+      { "id": "Student_04", "name": "Zhao Min", "gpa": 2.7, "internship": 2.15, "skills": 3.75, "personality": 0.59, "soft": 0.55 },
+      { "id": "AI_W1", "name": "AI Analyst Agent", "gpa": 3.6, "internship": 4.8, "skills": 3.75, "personality": 0.57, "soft": 0.4 }
+    ],
+    "companies": [
+      { "id": "C001", "name": "字节跳动", "salary": 14000, "location": 0.82, "career": 0.9, "reputation": 0.88, "meaning": 0.86 },
+      { "id": "C002", "name": "阿里巴巴", "salary": 13200, "location": 0.78, "career": 0.86, "reputation": 0.9, "meaning": 0.84 },
+      { "id": "C003", "name": "腾讯", "salary": 12500, "location": 0.72, "career": 0.82, "reputation": 0.86, "meaning": 0.8 },
+      { "id": "C004", "name": "美团", "salary": 11000, "location": 0.76, "career": 0.78, "reputation": 0.78, "meaning": 0.82 },
+      { "id": "AI_C1", "name": "AI Research Lab", "salary": 12500, "location": 1, "career": 0.9, "reputation": 0.82, "meaning": 0.95 }
+    ],
+    "studentWeights": {
+      "Student_01": { "salary": 0.19, "location": 0.22, "career": 0.19, "reputation": 0.25, "meaning": 0.15 },
+      "Student_02": { "salary": 0.19, "location": 0.25, "career": 0.19, "reputation": 0.2, "meaning": 0.17 },
+      "Student_03": { "salary": 0.18, "location": 0.21, "career": 0.21, "reputation": 0.21, "meaning": 0.19 },
+      "Student_04": { "salary": 0.21, "location": 0.24, "career": 0.18, "reputation": 0.18, "meaning": 0.19 },
+      "AI_W1": { "salary": 0.14, "location": 0.24, "career": 0.21, "reputation": 0.17, "meaning": 0.24 }
+    },
+    "companyWeights": {
+      "C001": { "gpa": 0.18, "skills": 0.26, "internship": 0.24, "personality": 0.15, "soft": 0.17 },
+      "C002": { "gpa": 0.2, "skills": 0.24, "internship": 0.2, "personality": 0.16, "soft": 0.2 },
+      "C003": { "gpa": 0.2, "skills": 0.22, "internship": 0.22, "personality": 0.18, "soft": 0.18 },
+      "C004": { "gpa": 0.16, "skills": 0.2, "internship": 0.22, "personality": 0.2, "soft": 0.22 },
+      "AI_C1": { "gpa": 0.16, "skills": 0.27, "internship": 0.16, "personality": 0.19, "soft": 0.22 }
+    },
+    "studentProfiles": {
+      "Student_01": {
+        "schoolText": "上海财经大学",
+        "gpaText": "GPA 2.8/4.0",
+        "majorText": "Business Analytics",
+        "courseText": "Statistics、Python、Database 或商业分析课程",
+        "educationText": "",
+        "internshipText": "校内 CRM 数据清洗项目 2 个月，负责 Excel 报表",
+        "skillsText": "Excel, PPT 基础；正在补 Python 和 SQL",
+        "personalityText": "谨慎、稳定，但主动性和抗压表现偏弱",
+        "softText": "沟通表达和反馈意识需要加强",
+        "preferenceText": "更看重公司声誉、地点和稳定发展。"
+      },
+      "Student_02": {
+        "schoolText": "University of Manchester",
+        "gpaText": "GPA 3.0/4.0",
+        "majorText": "Information Management",
+        "courseText": "Statistics、Python、Database、Business Analytics",
+        "educationText": "",
+        "internshipText": "电商运营实习 3 个月，参与用户增长数据分析",
+        "skillsText": "Python, SQL, Tableau, Power BI, CET-6",
+        "personalityText": "学习意愿尚可，但主动争取机会不足",
+        "softText": "沟通和抗压需要明显提升",
+        "preferenceText": "更看重地点、远程友好和通勤便利。"
+      },
+      "Student_03": {
+        "schoolText": "复旦大学",
+        "gpaText": "GPA 3.4/4.0",
+        "majorText": "Economics",
+        "courseText": "Statistics、Python、Database、Econometrics",
+        "educationText": "",
+        "internshipText": "银行市场研究项目 4 个月，负责行业 analysis",
+        "skillsText": "Excel, SQL 基础，Python 入门，CET-6",
+        "personalityText": "目标感强，抗压稳定，适应速度较快",
+        "softText": "沟通成熟，推动力和团队影响力突出",
+        "preferenceText": "更看重成长机会、公司声誉和岗位匹配度。"
+      },
+      "Student_04": {
+        "schoolText": "华东师范大学",
+        "gpaText": "GPA 2.7/4.0",
+        "majorText": "Marketing",
+        "courseText": "Statistics、Python、市场研究、Database",
+        "educationText": "",
+        "internshipText": "课程项目 2 个月，做小红书广告数据分析",
+        "skillsText": "Python, SQL, Tableau, Power BI",
+        "personalityText": "稳定但自驱力一般，职业目标不够清晰",
+        "softText": "表达、协作和反馈需要加强",
+        "preferenceText": "更看重地点和远程方式。"
+      },
+      "AI_W1": {
+        "schoolText": "AI Worker Profile",
+        "gpaText": "GPA 3.6/4.0 equivalent",
+        "majorText": "AI Analyst",
+        "courseText": "Python、SQL、Automation、Research",
+        "educationText": "",
+        "internshipText": "自动化 research 和 data analysis 任务 12 months",
+        "skillsText": "Python, SQL, coding, data analysis, research, automation",
+        "personalityText": "稳定、可复制、低情绪波动、可按规则执行",
+        "softText": "能解释推理、接收反馈并迭代；关键事实仍需要人类确认",
+        "preferenceText": "更看重远程、成长和岗位匹配度。"
+      }
+    },
+    "companyProfiles": {
+      "C001": {
+        "salaryText": "月薪 18k-25k，绩效奖金，餐补交通补贴。",
+        "locationText": "上海/北京办公，支持混合办公。",
+        "careerText": "增长业务核心项目，导师制和快速成长路径。",
+        "reputationText": "头部互联网平台，数据驱动文化成熟。",
+        "meaningText": "数据分析岗位，强调 SQL/Python、用户研究和业务洞察。",
+        "candidateText": "希望候选人具备岗位相关技能、可验证项目经历和稳定协作能力。"
+      },
+      "C002": {
+        "salaryText": "月薪 16k-22k，13 薪，团队培训资源完整。",
+        "locationText": "杭州办公，部分岗位混合办公。",
+        "careerText": "商业化和平台业务机会多，晋升路径清晰。",
+        "reputationText": "大型电商和云计算平台，品牌认可度高。",
+        "meaningText": "数据运营岗位，重视业务理解和数据表达。",
+        "candidateText": "更看重技能证书、实习项目和主动沟通。"
+      },
+      "C003": {
+        "salaryText": "月薪 20k-28k，福利完善。",
+        "locationText": "深圳办公，支持跨团队协作。",
+        "careerText": "产品分析和用户研究方向成长机会较好。",
+        "reputationText": "头部科技公司，产品生态丰富。",
+        "meaningText": "产品分析师岗位，强调用户洞察和实验分析。",
+        "candidateText": "更看重学习能力、项目经历和软技能。"
+      },
+      "C004": {
+        "salaryText": "月薪 17k-24k，业务项目节奏较快。",
+        "locationText": "北京/远程混合办公。",
+        "careerText": "本地生活业务场景丰富，实践机会多。",
+        "reputationText": "生活服务平台，业务稳定。",
+        "meaningText": "商业分析岗位，强调策略分析和报表体系。",
+        "candidateText": "更看重实习项目、抗压能力和协作能力。"
+      },
+      "AI_C1": {
+        "salaryText": "任务制远程岗位，按项目结算。",
+        "locationText": "完全远程。",
+        "careerText": "高自动化研发任务，适合高技能候选人。",
+        "reputationText": "AI 实验平台。",
+        "meaningText": "面向 AI Worker 和高技能学生的 research/coding 任务。",
+        "candidateText": "更看重技能、可验证项目经历和稳定执行。"
+      }
+    }
+  },
+  "result": {
+    "heldByCompany": {
+      "C001": "Student_03",
+      "C002": "Student_02",
+      "C003": "Student_04",
+      "C004": "Student_01",
+      "AI_C1": "AI_W1"
+    },
+    "blockingPairs": [],
+    "metrics": {
+      "studentAvg": 0.82,
+      "companyAvg": 0.79,
+      "totalUtility": 8.05,
+      "successRate": 1
+    },
+    "prefs": {
+      "studentPrefs": {
+        "Student_01": ["C002", "C001", "C004", "C003", "AI_C1"],
+        "Student_02": ["C002", "C001", "C003", "C004", "AI_C1"],
+        "Student_03": ["C001", "C003", "C002", "AI_C1", "C004"],
+        "Student_04": ["C003", "C004", "C002", "C001", "AI_C1"],
+        "AI_W1": ["AI_C1", "C001", "C002", "C003", "C004"]
+      },
+      "companyPrefs": {
+        "C001": ["Student_03", "AI_W1", "Student_02", "Student_04", "Student_01"],
+        "C002": ["Student_02", "Student_03", "AI_W1", "Student_04", "Student_01"],
+        "C003": ["Student_04", "Student_03", "Student_02", "AI_W1", "Student_01"],
+        "C004": ["Student_01", "Student_04", "Student_03", "Student_02", "AI_W1"],
+        "AI_C1": ["AI_W1", "Student_03", "Student_02", "Student_04", "Student_01"]
+      }
+    },
+    "studentUtilities": {
+      "Student_01": { "C001": 0.82, "C002": 0.9, "C003": 0.73, "C004": 0.78, "AI_C1": 0.76 },
+      "Student_02": { "C001": 0.84, "C002": 0.91, "C003": 0.8, "C004": 0.77, "AI_C1": 0.79 },
+      "Student_03": { "C001": 0.92, "C002": 0.85, "C003": 0.88, "C004": 0.78, "AI_C1": 0.84 },
+      "Student_04": { "C001": 0.76, "C002": 0.8, "C003": 0.87, "C004": 0.83, "AI_C1": 0.74 },
+      "AI_W1": { "C001": 0.86, "C002": 0.82, "C003": 0.8, "C004": 0.75, "AI_C1": 0.95 }
+    },
+    "companyUtilities": {
+      "C001": { "Student_01": 0.62, "Student_02": 0.76, "Student_03": 0.88, "Student_04": 0.74, "AI_W1": 0.8 },
+      "C002": { "Student_01": 0.66, "Student_02": 0.86, "Student_03": 0.8, "Student_04": 0.72, "AI_W1": 0.78 },
+      "C003": { "Student_01": 0.6, "Student_02": 0.74, "Student_03": 0.78, "Student_04": 0.82, "AI_W1": 0.72 },
+      "C004": { "Student_01": 0.79, "Student_02": 0.7, "Student_03": 0.74, "Student_04": 0.78, "AI_W1": 0.68 },
+      "AI_C1": { "Student_01": 0.58, "Student_02": 0.72, "Student_03": 0.76, "Student_04": 0.7, "AI_W1": 0.9 }
+    },
+    "rounds": [
+      {
+        "number": 1,
+        "proposals": { "C002": ["Student_01", "Student_02"], "C001": ["Student_03"], "C003": ["Student_04"], "AI_C1": ["AI_W1"] },
+        "decisions": [
+          { "companyId": "C002", "applicants": ["Student_01", "Student_02"], "accepted": "Student_02", "rejected": ["Student_01"] },
+          { "companyId": "C001", "applicants": ["Student_03"], "accepted": "Student_03", "rejected": [] },
+          { "companyId": "C003", "applicants": ["Student_04"], "accepted": "Student_04", "rejected": [] },
+          { "companyId": "AI_C1", "applicants": ["AI_W1"], "accepted": "AI_W1", "rejected": [] }
+        ],
+        "held": { "C002": "Student_02", "C001": "Student_03", "C003": "Student_04", "AI_C1": "AI_W1" }
+      },
+      {
+        "number": 2,
+        "proposals": { "C001": ["Student_01"] },
+        "decisions": [
+          { "companyId": "C001", "applicants": ["Student_03", "Student_01"], "accepted": "Student_03", "rejected": ["Student_01"] }
+        ],
+        "held": { "C002": "Student_02", "C001": "Student_03", "C003": "Student_04", "AI_C1": "AI_W1" }
+      },
+      {
+        "number": 3,
+        "proposals": { "C004": ["Student_01"] },
+        "decisions": [
+          { "companyId": "C004", "applicants": ["Student_01"], "accepted": "Student_01", "rejected": [] }
+        ],
+        "held": { "C002": "Student_02", "C001": "Student_03", "C003": "Student_04", "C004": "Student_01", "AI_C1": "AI_W1" }
+      }
+    ]
+  }
+}

@@ -216,13 +216,32 @@ function profileFieldValue(profile, field, entity = {}) {
 }
 
 async function loadPayload() {
-  const response = await fetch("/api/state");
-  if (!response.ok) throw new Error(`接口返回 ${response.status}`);
-  stateStore.payload = await response.json();
+  try {
+    const response = await fetch("/api/state");
+    if (!response.ok) throw new Error(`接口返回 ${response.status}`);
+    stateStore.payload = await response.json();
+    stateStore.demoMode = false;
+  } catch (error) {
+    const stored = localStorage.getItem("mytchDemoPayload");
+    if (stored) {
+      stateStore.payload = JSON.parse(stored);
+    } else {
+      const demoResponse = await fetch("demo_state.json");
+      if (!demoResponse.ok) throw error;
+      stateStore.payload = await demoResponse.json();
+    }
+    stateStore.demoMode = true;
+  }
   return stateStore.payload;
 }
 
 async function savePayload(messageTarget) {
+  if (stateStore.demoMode) {
+    localStorage.setItem("mytchDemoPayload", JSON.stringify(stateStore.payload));
+    setStateText(messageTarget, "演示模式：已暂存在当前浏览器，GitHub Pages 不连接 MySQL");
+    renderCurrentPage();
+    return;
+  }
   setStateText(messageTarget, "正在保存到 MySQL...");
   const response = await fetch("/api/state", {
     method: "POST",
@@ -812,6 +831,13 @@ function setupEvents() {
   $("#newCompanyBtn")?.addEventListener("click", addCompany);
   $("#runBtn")?.addEventListener("click", () => loadPayload().then(renderAdminPage).catch(showError));
   $("#loadExampleBtn")?.addEventListener("click", async () => {
+    if (stateStore.demoMode) {
+      localStorage.removeItem("mytchDemoPayload");
+      const demoResponse = await fetch("demo_state.json");
+      stateStore.payload = await demoResponse.json();
+      renderAdminPage();
+      return;
+    }
     const response = await fetch("/api/reset", { method: "POST" });
     if (!response.ok) throw new Error("恢复示例数据失败");
     stateStore.payload = await response.json();
