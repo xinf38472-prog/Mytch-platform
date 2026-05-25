@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>学生端 - Mytch 迈配</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="student">
+    <div class="client-shell">
+      <header class="global-topbar client-header">
+        <a class="brand compact-brand" href="index.html">
+          <div class="brand-mark" aria-hidden="true"><img src="assets/mytch-logo.svg" alt="" /></div>
+          <div>
+            <h1>Mytch 迈配</h1>
+            <p>学生求职者后台</p>
+          </div>
+        </a>
+        <nav class="client-nav" aria-label="端口切换">
+          <a href="index.html">首页</a>
+          <a class="active" href="student.html">学生端</a>
+          <a href="company.html">公司端</a>
+          <a href="admin.html">管理后台</a>
+        </nav>
+      </header>
+
+      <div class="product-layout">
+        <aside class="client-sidebar">
+          <a class="brand side-brand" href="index.html">
+            <div class="brand-mark" aria-hidden="true"><img src="assets/mytch-logo.svg" alt="" /></div>
+            <div>
+              <h1>Mytch 迈配</h1>
+              <p>Student Portal</p>
+            </div>
+          </a>
+          <div class="side-title">
+            <strong>学生端菜单</strong>
+            <span>Worker Portal</span>
+          </div>
+          <nav class="side-menu" aria-label="学生端菜单">
+            <a href="#studentOverview">个人中心</a>
+            <a href="#studentInputCard">个人资料与经历填写</a>
+            <a href="#studentPreferenceCard">求职偏好描述</a>
+            <a href="#studentRankingCard">我的企业偏好排序</a>
+            <a href="#studentMatchCard">我的匹配结果</a>
+            <a href="#studentRules">诚信规则说明</a>
+          </nav>
+          <nav class="side-switch" aria-label="端口切换">
+            <a href="index.html">首页</a>
+            <a href="company.html">企业端</a>
+            <a href="admin.html">后台端</a>
+          </nav>
+        </aside>
+
+      <main class="product-main dashboard-main">
+        <section class="portal-titlebar">
+          <div>
+            <h2>学生端 / Student Portal</h2>
+            <p>输入文字资料，系统自动生成五维能力评分，并为你推荐匹配岗位。</p>
+          </div>
+        </section>
+
+        <section class="portal-flow-strip" aria-label="学生端流程">
+          <article class="active"><span><i class="svg-icon file-icon" aria-hidden="true"></i></span><strong>文字输入</strong><em>Raw Profile Input</em></article>
+          <i aria-hidden="true">→</i>
+          <article><span><i class="svg-icon bot-icon" aria-hidden="true"></i></span><strong>自动评分</strong><em>AI Scoring Output</em></article>
+          <i aria-hidden="true">→</i>
+          <article><span><i class="svg-icon sliders-icon" aria-hidden="true"></i></span><strong>偏好设置</strong><em>Job Preferences</em></article>
+          <i aria-hidden="true">→</i>
+          <article><span><i class="svg-icon briefcase-icon" aria-hidden="true"></i></span><strong>匹配推荐</strong><em>Matched Jobs</em></article>
+        </section>
+
+        <section class="panel overview-card" id="studentOverview">
+          <div>
+            <p class="eyebrow">Student Center</p>
+            <h2>个人数据概览</h2>
+            <p>资料修改后自动入库、自动重算匹配，当前页面无刷新更新。</p>
+          </div>
+          <div class="account-tools overview-tools">
+            <label class="select-label">
+              学生档案
+              <select id="studentSelect"></select>
+            </label>
+            <button class="icon-button" id="newStudentBtn" type="button">新建档案</button>
+          </div>
+          <div class="overview-meta">
+            <article><span>学生账号</span><strong id="studentOverviewId">-</strong></article>
+            <article><span>当前权重状态</span><strong id="studentWeightStatus">已计算</strong></article>
+            <article><span>数据更新时间</span><strong id="studentUpdatedAt">刚刚</strong></article>
+            <article><span>诚信状态</span><strong class="status-ok">正常</strong></article>
+          </div>
+        </section>
+
+        <section class="panel flow-card form-card" id="studentInputCard">
+          <div class="panel-heading">
+            <div>
+              <h3>A. 学生原始资料输入 / Raw Profile Input</h3>
+              <p>填写学校、GPA、专业、相关课程、实习/项目、技能证书、个性特质和软技能；系统会自动生成五维能力评分并重新计算匹配结果。</p>
+            </div>
+          </div>
+          <form id="studentForm" class="profile-form">
+            <div id="studentIdentityFields" class="identity-fields"></div>
+            <div id="studentAttrFields" class="field-grid"></div>
+            <div class="form-actions">
+              <span id="studentState" class="inline-state">示例数据已加载</span>
+              <button class="icon-button primary" type="submit">
+                <span aria-hidden="true">▶</span>
+                <span>保存并匹配</span>
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel flow-card form-card" id="studentPreferenceCard">
+          <div class="panel-heading">
+            <div>
+              <h3>C. 求职偏好 / Job Preferences</h3>
+              <p>用文字描述你对薪资、地点、成长机会、公司声誉和岗位匹配度的偏好，系统会自动生成权重。</p>
+            </div>
+          </div>
+          <div id="studentPreferenceFields" class="field-grid"></div>
+        </section>
+
+        <section class="visual-pair" id="studentVisuals">
+          <section class="panel flow-card visual-panel" id="studentAbilityCard">
+            <div class="panel-heading">
+              <div>
+                <h3>B. 系统自动评分 / AI Scoring Output</h3>
+                <p>系统生成的五维能力雷达图</p>
+              </div>
+            </div>
+            <div id="studentRadarChart" class="radar-chart"></div>
+          </section>
+
+          <section class="panel flow-card" id="studentWeightCard">
+            <div class="panel-heading">
+              <div>
+                <h3>偏好权重 / Preference Weights</h3>
+                <p>求职偏好权重占比进度图</p>
+              </div>
+            </div>
+            <div id="studentWeightFields" class="field-grid"></div>
+          </section>
+        </section>
+
+        <section class="panel flow-card" id="studentRankingCard">
+          <div class="panel-heading">
+            <div>
+              <h3>D. 匹配推荐结果 / Matched Job Recommendations</h3>
+              <p>系统根据你的求职偏好权重生成企业排序。</p>
+            </div>
+          </div>
+          <div id="studentPersonalPrefs" class="rank-list compact"></div>
+        </section>
+
+        <section class="panel flow-card result-panel" id="studentMatchCard">
+          <div class="panel-heading">
+            <div>
+              <h3>E. 我的结果 / My Results</h3>
+              <p>最优企业、双向效用与稳定性结论</p>
+            </div>
+            <span id="studentStableBadge" class="badge positive">Stable</span>
+          </div>
+          <div id="studentResult" class="personal-result"></div>
+        </section>
+
+        <section class="panel rules-panel overview-card" id="studentRules">
+          <div class="panel-heading"><h3>诚信规则说明</h3></div>
+          <div class="governance-grid">
+            <article><strong>信息入库</strong><span>提交后资料会同步进入后端数据库，作为匹配计算依据。</span></article>
+            <article><strong>动态重算</strong><span>能力或偏好变化会自动刷新效用矩阵和最终匹配。</span></article>
+          </div>
+        </section>
+      </main>
+      </div>
+    </div>
+
+    <script src="app.js?v=mytch-feedback-20260525"></script>
+  </body>
+</html>

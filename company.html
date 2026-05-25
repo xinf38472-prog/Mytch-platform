@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>企业端 - Mytch 迈配</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="company">
+    <div class="client-shell">
+      <header class="global-topbar client-header">
+        <a class="brand compact-brand" href="index.html">
+          <div class="brand-mark" aria-hidden="true"><img src="assets/mytch-logo.svg" alt="" /></div>
+          <div>
+            <h1>Mytch 迈配</h1>
+            <p>企业招聘后台</p>
+          </div>
+        </a>
+        <nav class="client-nav" aria-label="端口切换">
+          <a href="index.html">首页</a>
+          <a href="student.html">学生端</a>
+          <a class="active" href="company.html">公司端</a>
+          <a href="admin.html">管理后台</a>
+        </nav>
+      </header>
+
+      <div class="product-layout">
+        <aside class="client-sidebar">
+          <a class="brand side-brand" href="index.html">
+            <div class="brand-mark" aria-hidden="true"><img src="assets/mytch-logo.svg" alt="" /></div>
+            <div>
+              <h1>Mytch 迈配</h1>
+              <p>Company Portal</p>
+            </div>
+          </a>
+          <div class="side-title">
+            <strong>企业端菜单</strong>
+            <span>Employer Portal</span>
+          </div>
+          <nav class="side-menu" aria-label="企业端菜单">
+            <a href="#companyOverview">企业中心</a>
+            <a href="#companyInputCard">岗位与企业描述</a>
+            <a href="#companyPreferenceCard">人才偏好描述</a>
+            <a href="#companyRankingCard">学生偏好排名列表</a>
+            <a href="#companyMatchCard">企业匹配结果</a>
+            <a href="#companySimulation">AI智能招聘模拟</a>
+          </nav>
+          <nav class="side-switch" aria-label="端口切换">
+            <a href="index.html">首页</a>
+            <a href="student.html">学生端</a>
+            <a href="admin.html">后台端</a>
+          </nav>
+        </aside>
+
+      <main class="product-main dashboard-main">
+        <section class="portal-titlebar">
+          <div>
+            <h2>企业端 / Company Portal</h2>
+            <p>录入岗位属性与候选人偏好，系统为你生成候选人排序与匹配结果。</p>
+          </div>
+        </section>
+
+        <section class="portal-flow-strip company-flow" aria-label="企业端流程">
+          <article class="active"><span><i class="svg-icon briefcase-icon" aria-hidden="true"></i></span><strong>岗位属性输入</strong><em>Job Attributes</em></article>
+          <i aria-hidden="true">→</i>
+          <article><span><i class="svg-icon sliders-icon" aria-hidden="true"></i></span><strong>候选人偏好</strong><em>Preferences</em></article>
+          <i aria-hidden="true">→</i>
+          <article><span><i class="svg-icon chart-icon" aria-hidden="true"></i></span><strong>候选人排序</strong><em>Ranking</em></article>
+          <i aria-hidden="true">→</i>
+          <article><span><i class="svg-icon check-icon" aria-hidden="true"></i></span><strong>匹配结果</strong><em>Results</em></article>
+        </section>
+
+        <section class="panel overview-card" id="companyOverview">
+          <div>
+            <p class="eyebrow">Employer Center</p>
+            <h2>企业中心概览</h2>
+            <p>企业信息可新增、可修改、永久入库，并动态参与全局匹配。</p>
+          </div>
+          <div class="account-tools overview-tools">
+            <label class="select-label">
+              企业档案
+              <select id="companySelect"></select>
+            </label>
+            <button class="icon-button" id="newCompanyBtn" type="button">新建档案</button>
+          </div>
+          <div class="overview-meta">
+            <article><span>企业账号</span><strong id="companyOverviewId">-</strong></article>
+            <article><span>招聘状态</span><strong id="companyHiringStatus">开放匹配</strong></article>
+            <article><span>数据更新时间</span><strong id="companyUpdatedAt">刚刚</strong></article>
+            <article><span>合规公示</span><strong class="status-ok">已公示</strong></article>
+          </div>
+        </section>
+
+        <section class="panel flow-card form-card" id="companyInputCard">
+          <div class="panel-heading">
+            <div>
+              <h3>A. 岗位属性输入 / Job Attributes</h3>
+              <p>先填写薪资福利、办公方式、成长机会、公司声誉和岗位内容，再由系统生成企业图表和匹配结果。</p>
+            </div>
+          </div>
+          <form id="companyForm" class="profile-form">
+            <div id="companyIdentityFields" class="identity-fields"></div>
+            <div id="companyAttrFields" class="field-grid"></div>
+            <div class="form-actions">
+              <span id="companyState" class="inline-state">示例数据已加载</span>
+              <button class="icon-button primary" type="submit">
+                <span aria-hidden="true">▶</span>
+                <span>保存并匹配</span>
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel flow-card form-card" id="companyPreferenceCard">
+          <div class="panel-heading">
+            <div>
+              <h3>B. 候选人偏好权重 / Employer Preferences</h3>
+              <p>用文字描述企业评价候选人的标准，系统会自动生成学历、技能、实习、个性和软技能权重。</p>
+            </div>
+          </div>
+          <div id="companyPreferenceFields" class="field-grid"></div>
+        </section>
+
+        <section class="visual-pair" id="companyVisuals">
+          <section class="panel flow-card visual-panel" id="companyAttrCard">
+            <div class="panel-heading">
+              <div>
+                <h3>岗位属性可视化 / Attribute Signals</h3>
+                <p>岗位五维属性柱状可视化图</p>
+              </div>
+            </div>
+            <div id="companyBarChart" class="bar-chart-card"></div>
+          </section>
+
+          <section class="panel flow-card" id="companyWeightCard">
+            <div class="panel-heading">
+              <div>
+                <h3>招聘权重比例 / Preference Ratio</h3>
+                <p>企业招聘权重环形比例图</p>
+              </div>
+            </div>
+          <div id="companyDonutChart" class="donut-card"></div>
+          <div id="companyWeightFields" class="field-grid sr-only"></div>
+          </section>
+        </section>
+
+        <section class="panel flow-card" id="companyRankingCard">
+          <div class="panel-heading">
+            <div>
+              <h3>C. 候选人排序 / Candidate Ranking</h3>
+              <p>系统根据企业招聘偏好权重生成候选人排序。</p>
+            </div>
+          </div>
+          <div id="companyPersonalPrefs" class="rank-list compact"></div>
+        </section>
+
+        <section class="panel flow-card result-panel" id="companyMatchCard">
+          <div class="panel-heading">
+            <div>
+              <h3>D. 最终匹配结果 / Matching Results</h3>
+              <p>最优学生、双向效用与稳定性结论</p>
+            </div>
+            <span id="companyStableBadge" class="badge positive">Stable</span>
+          </div>
+          <div id="companyResult" class="personal-result"></div>
+        </section>
+
+        <section class="panel rules-panel overview-card" id="companySimulation">
+          <div class="panel-heading"><h3>AI智能招聘模拟</h3></div>
+          <div class="governance-grid">
+            <article><strong>新增岗位入库</strong><span>企业档案提交后永久进入数据库，参与全局匹配。</span></article>
+            <article><strong>AI招聘扩展</strong><span>AI Employer 可和普通企业一样设置岗位偏好并选择候选人。</span></article>
+          </div>
+        </section>
+      </main>
+      </div>
+    </div>
+
+    <script src="app.js?v=mytch-feedback-20260525"></script>
+  </body>
+</html>

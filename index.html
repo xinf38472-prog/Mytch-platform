@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mytch 迈配 · AI智能招聘匹配平台</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="portal">
+    <header class="site-nav mytch-nav">
+      <a class="brand portal-brand" href="index.html">
+        <div class="brand-mark" aria-hidden="true"><img src="assets/mytch-logo.svg" alt="" /></div>
+        <div>
+          <h1>Mytch 迈配</h1>
+          <p>AI智能双边匹配平台</p>
+        </div>
+      </a>
+      <nav class="site-links" aria-label="官网导航">
+        <a class="active" href="index.html">首页</a>
+        <a href="student.html">学生端</a>
+        <a href="company.html">公司端</a>
+        <a href="admin.html">后台端</a>
+        <a href="#architectureIntro">技术架构</a>
+        <a href="#algorithmIntro">关于我们</a>
+      </nav>
+      <a class="nav-cta" href="student.html">进入平台 <span aria-hidden="true">→</span></a>
+    </header>
+
+    <main class="mytch-home">
+      <section class="mytch-hero" id="platformIntro">
+        <div class="hero-copy">
+          <p class="eyebrow hero-pill">AI 驱动的智能招聘匹配平台</p>
+          <h2>Mytch 迈配</h2>
+          <p class="hero-mainline">为每个用户生成<span>个性化匹配</span></p>
+          <p class="hero-subtitle">My + Match：让每个独特的你与合适机会精准相遇。</p>
+          <p class="hero-slogan">文字资料入库 · 自动量化评分 · 双边稳定匹配 · 诚信审计治理</p>
+          <div class="portal-actions">
+            <a class="icon-button primary" href="student.html">我是学生，寻找机会</a>
+            <a class="icon-button ghost" href="company.html">我是企业，寻找人才</a>
+            <a class="icon-button ghost" href="admin.html">进入平台后台</a>
+          </div>
+          <div class="hero-feature-row" aria-label="平台能力">
+            <span><i class="svg-icon check-icon" aria-hidden="true"></i>双边偏好</span>
+            <span><i class="svg-icon bot-icon" aria-hidden="true"></i>智能评分</span>
+            <span><i class="svg-icon nodes-icon" aria-hidden="true"></i>稳定匹配</span>
+            <span><i class="svg-icon file-icon" aria-hidden="true"></i>透明可信</span>
+          </div>
+        </div>
+        <div class="hero-showcase dashboard-preview" aria-label="Mytch 迈配三端智能匹配预览">
+          <div class="preview-sidebar">
+            <div class="preview-brand"><img src="assets/mytch-logo.svg" alt="" /><span>Mytch</span></div>
+            <span class="active">概览</span>
+            <span>匹配流程</span>
+            <span>学生管理</span>
+            <span>审计治理</span>
+          </div>
+          <div class="preview-main">
+            <div class="preview-head">
+              <strong>匹配总览</strong>
+              <span>Dashboard</span>
+            </div>
+            <div class="preview-metrics">
+              <article><i class="svg-icon user-icon teal" aria-hidden="true"></i><span>学生档案</span><strong>128</strong></article>
+              <article><i class="svg-icon briefcase-icon orange" aria-hidden="true"></i><span>企业岗位</span><strong>42</strong></article>
+              <article><i class="svg-icon shield-icon blue" aria-hidden="true"></i><span>定匹配率</span><strong>96%</strong></article>
+            </div>
+            <div class="preview-panels">
+              <section>
+                <strong>实时匹配流</strong>
+                <p><span></span><b></b><em>S1 → C2</em></p>
+                <p><span></span><b></b><em>S2 → C3</em></p>
+                <p><span></span><b></b><em>S3 → C5</em></p>
+              </section>
+              <section>
+                <strong>资料输入信号</strong>
+                <p><label>技能与证书</label><b style="--w:78%"></b></p>
+                <p><label>求职偏好</label><b style="--w:66%"></b></p>
+                <p><label>岗位发展</label><b style="--w:72%"></b></p>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section process-section">
+        <div class="section-heading">
+          <h2>平台匹配流程</h2>
+          <p>从文字资料到稳定匹配结果，系统只展示必要步骤，计算逻辑在后台完整留痕。</p>
+        </div>
+        <div class="process-flow">
+          <article><span class="flow-icon teal"><i class="svg-icon user-icon" aria-hidden="true"></i></span><strong>学生输入资料</strong><p>学历、经历、技能、个性与软技能描述</p></article>
+          <i aria-hidden="true">→</i>
+          <article><span class="flow-icon blue"><i class="svg-icon bot-icon" aria-hidden="true"></i></span><strong>AI 自动评分</strong><p>生成五维能力与岗位属性分数</p></article>
+          <i aria-hidden="true">→</i>
+          <article><span class="flow-icon violet"><i class="svg-icon grid-icon" aria-hidden="true"></i></span><strong>双边偏好矩阵</strong><p>学生偏好企业，企业偏好学生</p></article>
+          <i aria-hidden="true">→</i>
+          <article><span class="flow-icon orange"><i class="svg-icon nodes-icon" aria-hidden="true"></i></span><strong>稳定匹配</strong><p>输出无阻塞对的匹配结果</p></article>
+          <i aria-hidden="true">→</i>
+          <article><span class="flow-icon teal"><i class="svg-icon check-icon" aria-hidden="true"></i></span><strong>输出匹配结果</strong><p>为每个用户生成个性化匹配</p></article>
+        </div>
+      </section>
+
+      <section class="home-section" id="entryCards">
+        <div class="section-heading">
+          <h2>三端协同工作台</h2>
+          <p>学生和企业先填写真实资料描述，系统再自动量化并统一入库、计算、校验。</p>
+        </div>
+        <div class="home-entry-grid">
+          <a class="home-entry-card" href="student.html">
+            <span class="entry-icon teal"><i class="svg-icon cap-icon" aria-hidden="true"></i></span>
+            <strong>学生端入口</strong>
+            <p>填写学校、GPA、专业、课程、经历和求职偏好描述，查看系统生成的企业排序和稳定匹配。</p>
+            <b>立即进入</b>
+          </a>
+          <a class="home-entry-card" href="company.html">
+            <span class="entry-icon orange"><i class="svg-icon briefcase-icon" aria-hidden="true"></i></span>
+            <strong>企业端入口</strong>
+            <p>填写岗位、薪资、成长、声誉和候选人偏好描述，动态参与全局招聘匹配。</p>
+            <b>立即进入</b>
+          </a>
+          <a class="home-entry-card" href="admin.html">
+            <span class="entry-icon blue"><i class="svg-icon shield-icon" aria-hidden="true"></i></span>
+            <strong>管理后台入口</strong>
+            <p>查看数据库、效用矩阵、GS推演、稳定性校验和仿真实验。</p>
+            <b>立即进入</b>
+          </a>
+        </div>
+      </section>
+
+      <section class="home-section architecture-section" id="architectureIntro">
+        <div class="section-heading">
+          <h2>技术架构预览</h2>
+          <p>前端输入、MySQL 数据、效用矩阵、匹配结果与审计记录形成可追溯闭环。</p>
+        </div>
+        <div class="architecture-grid">
+          <article><span><i class="svg-icon file-icon" aria-hidden="true"></i></span><strong>前端页面</strong><p>学生端、企业端、后台端</p></article>
+          <article><span><i class="svg-icon database-icon" aria-hidden="true"></i></span><strong>MySQL 数据库</strong><p>用户、岗位、评分与偏好</p></article>
+          <article><span><i class="svg-icon grid-icon" aria-hidden="true"></i></span><strong>效用矩阵</strong><p>双边评分标准化处理</p></article>
+          <article><span><i class="svg-icon nodes-icon" aria-hidden="true"></i></span><strong>匹配结果</strong><p>稳定匹配与推荐列表</p></article>
+          <article><span><i class="svg-icon shield-icon" aria-hidden="true"></i></span><strong>审计记录</strong><p>操作日志与治理机制</p></article>
+        </div>
+      </section>
+
+      <section class="home-section" id="algorithmIntro">
+        <div class="section-heading">
+          <h2>平台核心优势</h2>
+          <p>从数据录入到稳定匹配，再到诚信约束和扩展仿真，形成完整招聘匹配闭环。</p>
+        </div>
+        <div class="advantage-grid">
+          <article><span>01</span><strong>AI智能匹配</strong><p>先收集双方文字资料，再自动量化属性与偏好，生成双边效用矩阵。</p></article>
+          <article><span>02</span><strong>稳定无阻塞匹配</strong><p>使用 Gale-Shapley 机制输出稳定匹配并检查阻塞对。</p></article>
+          <article><span>03</span><strong>博弈诚信机制</strong><p>通过审计、保证金和惩罚设计降低虚假申报收益。</p></article>
+          <article><span>04</span><strong>动态可扩展数据库</strong><p>学生和企业新增后写入 MySQL，并立即参与下一轮计算。</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <strong>Mytch 迈配</strong>
+      <span>基于 MySQL、Gale-Shapley 稳定匹配与 AI 诚信治理机制的招聘匹配系统原型。</span>
+    </footer>
+  </body>
+</html>
