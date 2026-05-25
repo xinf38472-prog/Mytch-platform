@@ -1,14 +1,10 @@
 # Stable Hire · MySQL-only 双边稳定招聘匹配平台
 
-这是一个只保留 MySQL 后端的 Stable Hire 项目版本。项目包含首页、学生端、企业端和管理后台，并使用学生发起的 Gale-Shapley 稳定匹配算法生成最终匹配结果。
 
 ## 1. 项目核心逻辑
 
-本版本采用更接近真实平台的输入方式：
-
 ```text
-学生端不让学生直接填写“技能 8.5 分”这类主观分数。
-学生只填写 GPA、实习经历、技能证书、项目经历、个性描述和软技能经历。
+学生填写 GPA、实习经历、技能证书、项目经历、个性描述和软技能经历。
 后端 server_mysql.py 通过规则化评分函数自动生成五维能力分数。
 系统再用这些分数计算双边效用矩阵并运行 Gale-Shapley 稳定匹配。
 ```
@@ -46,8 +42,6 @@ mysql_seed.sql          MySQL 初始数据
 assets/market-dashboard.png 首页图片资源
 README.md
 ```
-
-本版本已经删除 SQLite 和 Excel 导入依赖，不再需要 `server.py`、`stable_hire.sqlite` 或 `export_mysql_seed.py`。
 
 ## 3. MySQL 表逻辑
 
