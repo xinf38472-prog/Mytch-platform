@@ -6,6 +6,8 @@ const STUDENT_ATTRS = [
   { key: "soft", label: "软技能", min: 0, max: 1 }
 ];
 
+const DEMO_STORAGE_KEY = "mytchDemoPayload:v2-full-seed";
+
 const STUDENT_PROFILE_FIELDS = [
   {
     key: "schoolText",
@@ -222,7 +224,7 @@ async function loadPayload() {
     stateStore.payload = await response.json();
     stateStore.demoMode = false;
   } catch (error) {
-    const stored = localStorage.getItem("mytchDemoPayload");
+    const stored = localStorage.getItem(DEMO_STORAGE_KEY);
     if (stored) {
       stateStore.payload = JSON.parse(stored);
     } else {
@@ -237,7 +239,7 @@ async function loadPayload() {
 
 async function savePayload(messageTarget) {
   if (stateStore.demoMode) {
-    localStorage.setItem("mytchDemoPayload", JSON.stringify(stateStore.payload));
+    localStorage.setItem(DEMO_STORAGE_KEY, JSON.stringify(stateStore.payload));
     setStateText(messageTarget, "演示模式：已暂存在当前浏览器，GitHub Pages 不连接 MySQL");
     renderCurrentPage();
     return;
@@ -832,7 +834,7 @@ function setupEvents() {
   $("#runBtn")?.addEventListener("click", () => loadPayload().then(renderAdminPage).catch(showError));
   $("#loadExampleBtn")?.addEventListener("click", async () => {
     if (stateStore.demoMode) {
-      localStorage.removeItem("mytchDemoPayload");
+      localStorage.removeItem(DEMO_STORAGE_KEY);
       const demoResponse = await fetch("demo_state.json");
       stateStore.payload = await demoResponse.json();
       renderAdminPage();
