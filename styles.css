@@ -1345,6 +1345,105 @@ body[data-page="admin"] .sidebar {
   opacity: 1 !important;
 }
 
+.manual-case-panel .panel-heading {
+  align-items: flex-start !important;
+  gap: 16px !important;
+}
+
+.manual-case-panel .panel-heading p {
+  margin: 6px 0 0 !important;
+  color: var(--mt-muted) !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+}
+
+.five-case {
+  display: grid !important;
+  gap: 16px !important;
+}
+
+.five-case-summary {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+}
+
+.five-case-summary article {
+  min-height: 82px !important;
+  padding: 14px 16px !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(213, 224, 234, 0.86) !important;
+  background: linear-gradient(135deg, rgba(248, 252, 253, 0.96), rgba(232, 246, 243, 0.72)) !important;
+  box-shadow: 0 12px 30px rgba(13, 27, 42, 0.06) !important;
+}
+
+.five-case-summary span,
+.five-case-summary em {
+  display: block !important;
+  color: var(--mt-muted) !important;
+  font-size: 11px !important;
+  font-style: normal !important;
+}
+
+.five-case-summary strong {
+  display: block !important;
+  margin: 4px 0 3px !important;
+  color: var(--mt-ink) !important;
+  font-size: 22px !important;
+  line-height: 1.05 !important;
+}
+
+.five-case-heatmaps {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+}
+
+.five-heatmap-card {
+  min-width: 0 !important;
+  padding: 14px !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(213, 224, 234, 0.9) !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.86) !important;
+}
+
+.five-heatmap-card > strong {
+  display: block !important;
+  margin: 0 0 10px !important;
+  color: var(--mt-ink) !important;
+  font-size: 13px !important;
+}
+
+.five-heatmap-scroll {
+  overflow-x: auto !important;
+  padding-bottom: 3px !important;
+}
+
+.mini-heatmap {
+  min-width: 520px !important;
+}
+
+.mini-heatmap th,
+.mini-heatmap td {
+  width: 70px !important;
+  height: 44px !important;
+  min-width: 70px !important;
+  font-size: 11px !important;
+}
+
+.mini-heatmap thead th:first-child,
+.mini-heatmap tbody th {
+  width: 88px !important;
+  min-width: 88px !important;
+}
+
+.five-case-results .table-wrap {
+  border-radius: 16px !important;
+  border: 1px solid rgba(213, 224, 234, 0.9) !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+}
+
 @media (max-width: 1180px) {
   body[data-page="student"] .product-layout,
   body[data-page="company"] .product-layout,
@@ -1355,6 +1454,11 @@ body[data-page="admin"] .sidebar {
   .process-flow {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
+
+  .five-case-summary,
+  .five-case-heatmaps {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
 }
 
 @media (max-width: 760px) {
@@ -1363,6 +1467,11 @@ body[data-page="admin"] .sidebar {
   }
 
   .donut-card {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .five-case-summary,
+  .five-case-heatmaps {
     grid-template-columns: minmax(0, 1fr) !important;
   }
 }

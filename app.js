@@ -726,6 +726,162 @@ function addCompany() {
   savePayload("#companyState").catch(showError);
 }
 
+function buildFiveByFiveCase() {
+  const { state, result } = stateStore.payload;
+  const students = state.students.slice(0, 5);
+  const companies = state.companies.slice(0, 5);
+  const studentPrefs = Object.fromEntries(students.map((student) => [
+    student.id,
+    companies
+      .map((company) => company.id)
+      .sort((a, b) => Number(result.studentUtilities?.[student.id]?.[b] || 0) - Number(result.studentUtilities?.[student.id]?.[a] || 0))
+  ]));
+  const companyPrefs = Object.fromEntries(companies.map((company) => [
+    company.id,
+    students
+      .map((student) => student.id)
+      .sort((a, b) => Number(result.companyUtilities?.[company.id]?.[b] || 0) - Number(result.companyUtilities?.[company.id]?.[a] || 0))
+  ]));
+  const companyRank = Object.fromEntries(companies.map((company) => [
+    company.id,
+    Object.fromEntries(companyPrefs[company.id].map((studentId, index) => [studentId, index]))
+  ]));
+  const nextChoice = Object.fromEntries(students.map((student) => [student.id, 0]));
+  const heldByCompany = {};
+  const unmatched = students.map((student) => student.id);
+  const rounds = [];
+
+  while (unmatched.length) {
+    const studentId = unmatched.shift();
+    const prefs = studentPrefs[studentId] || [];
+    if (nextChoice[studentId] >= prefs.length) continue;
+
+    const companyId = prefs[nextChoice[studentId]];
+    nextChoice[studentId] += 1;
+    const currentStudentId = heldByCompany[companyId];
+    if (!currentStudentId) {
+      heldByCompany[companyId] = studentId;
+      rounds.push({ studentId, companyId, action: "暂留" });
+      continue;
+    }
+
+    if (companyRank[companyId][studentId] < companyRank[companyId][currentStudentId]) {
+      heldByCompany[companyId] = studentId;
+      unmatched.push(currentStudentId);
+      rounds.push({ studentId, companyId, action: `替换 ${shortMatrixLabel(currentStudentId)}` });
+    } else {
+      unmatched.push(studentId);
+      rounds.push({ studentId, companyId, action: "拒绝" });
+    }
+  }
+
+  const companyByStudent = Object.fromEntries(Object.entries(heldByCompany).map(([companyId, studentId]) => [studentId, companyId]));
+  const blockingPairs = [];
+  students.forEach((student) => {
+    const currentCompanyId = companyByStudent[student.id];
+    if (!currentCompanyId) return;
+    const betterCompanies = studentPrefs[student.id].slice(0, studentPrefs[student.id].indexOf(currentCompanyId));
+    betterCompanies.forEach((companyId) => {
+      const currentStudentId = heldByCompany[companyId];
+      if (currentStudentId && companyRank[companyId][student.id] < companyRank[companyId][currentStudentId]) {
+        blockingPairs.push({ studentId: student.id, companyId });
+      }
+    });
+  });
+
+  return { students, companies, studentPrefs, companyPrefs, heldByCompany, rounds, blockingPairs };
+}
+
+function renderFiveHeatmap(caseData, mode) {
+  const { result } = stateStore.payload;
+  const isStudent = mode === "student";
+  const rows = isStudent ? caseData.students : caseData.companies;
+  const cols = isStudent ? caseData.companies : caseData.students;
+  const utilities = isStudent ? result.studentUtilities : result.companyUtilities;
+  const isMatched = (rowId, colId) => isStudent
+    ? caseData.heldByCompany[colId] === rowId
+    : caseData.heldByCompany[rowId] === colId;
+  return `
+    <div class="five-heatmap-card">
+      <strong>${isStudent ? "学生视角 U(s,c)" : "企业视角 V(c,s)"}</strong>
+      <div class="five-heatmap-scroll">
+        <table class="utility-heatmap mini-heatmap ${mode}-heatmap">
+          <thead>
+            <tr>
+              <th>${isStudent ? "学生/企业" : "企业/学生"}</th>
+              ${cols.map((item) => `<th title="${html(item.id)}">${html(shortMatrixLabel(item.id))}</th>`).join("")}
+            </tr>
+          </thead>
+          <tbody>
+            ${rows.map((row) => `
+              <tr>
+                <th title="${html(row.id)}">${html(shortMatrixLabel(row.id))}</th>
+                ${cols.map((col) => {
+                  const value = Number(utilities?.[row.id]?.[col.id] || 0);
+                  const matched = isMatched(row.id, col.id);
+                  return `
+                    <td
+                      class="heat-cell ${matched ? "matched" : ""}"
+                      title="${html(row.id)} → ${html(col.id)}：${score(value)}"
+                      style="--heat-color: ${heatColor(value, mode)}; --heat-text: ${value > 0.62 ? "#ffffff" : "#0d1b2a"};"
+                    ><span>${score(value)}</span></td>
+                  `;
+                }).join("")}
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+function renderFiveByFiveCase() {
+  const target = $("#fiveByFiveCase");
+  if (!target) return;
+  const { state, result } = stateStore.payload;
+  const students = byId(state.students);
+  const companies = byId(state.companies);
+  const caseData = buildFiveByFiveCase();
+  const matchRows = Object.entries(caseData.heldByCompany).map(([companyId, studentId]) => {
+    const studentUtility = Number(result.studentUtilities?.[studentId]?.[companyId] || 0);
+    const companyUtility = Number(result.companyUtilities?.[companyId]?.[studentId] || 0);
+    return `
+      <tr>
+        <td>${html(shortMatrixLabel(companyId))}</td>
+        <td>${html(companies[companyId]?.name || companyId)}</td>
+        <td>${html(shortMatrixLabel(studentId))}</td>
+        <td>${html(students[studentId]?.name || studentId)}</td>
+        <td>${score(studentUtility)}</td>
+        <td>${score(companyUtility)}</td>
+      </tr>
+    `;
+  }).join("");
+
+  target.innerHTML = `
+    <div class="five-case-summary">
+      <article><span>验证规模</span><strong>5 × 5</strong><em>手算样本</em></article>
+      <article><span>完整规模</span><strong>${state.students.length} × ${state.companies.length}</strong><em>平台保留</em></article>
+      <article><span>算法轮次</span><strong>${caseData.rounds.length}</strong><em>子样本执行</em></article>
+      <article><span>阻塞对</span><strong>${caseData.blockingPairs.length}</strong><em>${caseData.blockingPairs.length ? "需复核" : "稳定"}</em></article>
+    </div>
+    <div class="five-case-heatmaps">
+      ${renderFiveHeatmap(caseData, "student")}
+      ${renderFiveHeatmap(caseData, "company")}
+    </div>
+    <div class="five-case-results">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>公司</th><th>公司名称</th><th>学生</th><th>学生姓名</th><th>学生效用</th><th>企业效用</th></tr>
+          </thead>
+          <tbody>${matchRows}</tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
 function renderAdminPage() {
   const { state, result, database } = stateStore.payload;
   $("#studentCount").textContent = state.students.length;
@@ -750,6 +906,7 @@ function renderAdminPage() {
 
   renderMatchCards();
   renderMatrix();
+  renderFiveByFiveCase();
   renderAdminTables();
   renderAdminPreferences();
   renderRounds();
