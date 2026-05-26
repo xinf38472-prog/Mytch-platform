@@ -1367,6 +1367,148 @@ body[data-page="admin"] .sidebar {
   }
 }
 
+/* Final override: keep admin utility heatmap inside the panel and restore color scale */
+.matrix {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  padding: 12px !important;
+  border: 1px solid rgba(116, 141, 166, 0.22) !important;
+  border-radius: 8px !important;
+  background: linear-gradient(180deg, #ffffff, #f7fbfd) !important;
+}
+
+.matrix-summary {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  margin-bottom: 10px !important;
+  color: #526175 !important;
+  font-size: 12px !important;
+  font-weight: 760 !important;
+}
+
+.matrix-summary span {
+  color: #0d1b2a !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+}
+
+.matrix-summary em {
+  font-style: normal !important;
+}
+
+.matrix-summary b {
+  color: #008f7c !important;
+  font-weight: 900 !important;
+}
+
+.matrix-scroll {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: auto !important;
+  padding-bottom: 6px !important;
+}
+
+.utility-heatmap {
+  width: max-content !important;
+  min-width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 4px !important;
+  table-layout: fixed !important;
+}
+
+.utility-heatmap th,
+.utility-heatmap td {
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+}
+
+.utility-heatmap thead th {
+  min-width: 52px !important;
+  height: 28px !important;
+  color: #526175 !important;
+  background: transparent !important;
+  font-size: 10.5px !important;
+  font-weight: 860 !important;
+  text-align: center !important;
+}
+
+.utility-heatmap thead th:first-child,
+.utility-heatmap tbody th {
+  position: sticky !important;
+  left: 0 !important;
+  z-index: 2 !important;
+  min-width: 88px !important;
+  padding: 0 8px !important;
+  color: #26364f !important;
+  background: rgba(247, 251, 253, 0.96) !important;
+  border-radius: 7px !important;
+  text-align: left !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+}
+
+.utility-heatmap thead th:first-child {
+  z-index: 3 !important;
+}
+
+.utility-heatmap .heat-cell {
+  min-width: 52px !important;
+  height: 34px !important;
+  border-radius: 7px !important;
+  background: var(--heat-color) !important;
+  color: var(--heat-text) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.34),
+    0 1px 2px rgba(13, 27, 42, 0.06) !important;
+  text-align: center !important;
+  font-size: 10.5px !important;
+  font-weight: 900 !important;
+}
+
+.utility-heatmap .heat-cell span {
+  display: inline-block !important;
+  transform: translateY(1px) !important;
+}
+
+.utility-heatmap .heat-cell.matched {
+  outline: 2px solid #ffffff !important;
+  box-shadow:
+    0 0 0 2px #008f7c,
+    0 6px 14px rgba(0, 143, 124, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.55) !important;
+}
+
+.matrix-legend {
+  display: grid !important;
+  grid-template-columns: auto minmax(130px, 180px) auto !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-top: 8px !important;
+  color: #526175 !important;
+  font-size: 11px !important;
+  font-weight: 760 !important;
+}
+
+.matrix-legend i {
+  display: block !important;
+  height: 10px !important;
+  border-radius: 999px !important;
+}
+
+.student-legend i {
+  background: linear-gradient(90deg, #ebf7f5, #80d3c9, #16a394, #006c5f) !important;
+}
+
+.company-legend i {
+  background: linear-gradient(90deg, #eff5ff, #b2c5ff, #4970e2, #193d9c) !important;
+}
+
 /* Mytch final commercial visual specification */
 :root {
   --bg: #f5f7fa;

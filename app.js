@@ -149,6 +149,36 @@ function score(value) {
   return Number(value || 0).toFixed(3);
 }
 
+function heatColor(value, mode = "student") {
+  const t = clamp(value, 0, 1);
+  const stops = mode === "student"
+    ? [
+        [0, [235, 247, 245]],
+        [0.45, [128, 211, 201]],
+        [0.7, [22, 163, 148]],
+        [1, [0, 108, 95]]
+      ]
+    : [
+        [0, [239, 245, 255]],
+        [0.45, [178, 197, 255]],
+        [0.7, [73, 112, 226]],
+        [1, [25, 61, 156]]
+      ];
+  const pair = stops.find((stop, index) => index < stops.length - 1 && t <= stops[index + 1][0]);
+  const index = pair ? stops.indexOf(pair) : stops.length - 2;
+  const [startValue, startColor] = stops[index];
+  const [endValue, endColor] = stops[index + 1];
+  const ratio = endValue === startValue ? 0 : (t - startValue) / (endValue - startValue);
+  const color = startColor.map((channel, channelIndex) => Math.round(channel + (endColor[channelIndex] - channel) * ratio));
+  return `rgb(${color.join(", ")})`;
+}
+
+function shortMatrixLabel(id) {
+  return String(id || "")
+    .replace(/^Student_0?/, "S")
+    .replace(/^Company_0?/, "C");
+}
+
 function average(values) {
   if (!values.length) return 0;
   return values.reduce((sum, item) => sum + Number(item || 0), 0) / values.length;
@@ -745,11 +775,49 @@ function renderMatrix() {
   const rows = isStudent ? state.students : state.companies;
   const cols = isStudent ? state.companies : state.students;
   const utilities = isStudent ? result.studentUtilities : result.companyUtilities;
+  const mode = isStudent ? "student" : "company";
+  const isMatched = (rowId, colId) => isStudent
+    ? result.heldByCompany?.[colId] === rowId
+    : result.heldByCompany?.[rowId] === colId;
   $("#utilityMatrix").innerHTML = `
-    <table>
-      <thead><tr><th>${isStudent ? "学生/企业" : "企业/学生"}</th>${cols.map((item) => `<th>${html(item.id)}</th>`).join("")}</tr></thead>
-      <tbody>${rows.map((row) => `<tr><th>${html(row.id)}</th>${cols.map((col) => `<td>${score(utilities[row.id]?.[col.id])}</td>`).join("")}</tr>`).join("")}</tbody>
-    </table>
+    <div class="matrix-summary">
+      <span>${isStudent ? "学生对企业效用 U(s,c)" : "企业对学生效用 V(c,s)"}</span>
+      <em>颜色越深表示效用越高</em>
+      <b>描边 = 最终匹配</b>
+    </div>
+    <div class="matrix-scroll">
+      <table class="utility-heatmap ${mode}-heatmap">
+        <thead>
+          <tr>
+            <th>${isStudent ? "学生/企业" : "企业/学生"}</th>
+            ${cols.map((item) => `<th title="${html(item.id)}">${html(shortMatrixLabel(item.id))}</th>`).join("")}
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map((row) => `
+            <tr>
+              <th title="${html(row.id)}">${html(shortMatrixLabel(row.id))}</th>
+              ${cols.map((col) => {
+                const value = Number(utilities[row.id]?.[col.id] || 0);
+                const matched = isMatched(row.id, col.id);
+                return `
+                  <td
+                    class="heat-cell ${matched ? "matched" : ""}"
+                    title="${html(row.id)} → ${html(col.id)}：${score(value)}"
+                    style="--heat-color: ${heatColor(value, mode)}; --heat-text: ${value > 0.62 ? "#ffffff" : "#0d1b2a"};"
+                  ><span>${score(value)}</span></td>
+                `;
+              }).join("")}
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+    <div class="matrix-legend ${mode}-legend">
+      <span>低效用</span>
+      <i></i>
+      <span>高效用</span>
+    </div>
   `;
 }
 
